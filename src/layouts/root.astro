@@ -1,0 +1,20 @@
+---
+import Head from "@/components/head.astro";
+import "@/styles/global.css";
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head />
+    <Font cssVariable="--font-title" preload />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" preload />
+    <ClientRouter />
+  </head>
+  <body class="font-sans antialiased text-primary bg-background">
+    <slot />
+  </body>
+</html>
