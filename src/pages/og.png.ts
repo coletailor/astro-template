@@ -1,24 +1,25 @@
 // src/pages/og.png.ts
+
 import { getFontDataTTF } from "@/lib/google-fonts";
 import type { APIRoute } from "astro";
-import { readFile } from "fs/promises";
+import { readFile } from "node:fs/promises";
 import { satoriAstroOG } from "satori-astro";
 import { html } from "satori-html";
 
 export const GET: APIRoute = async () => {
-  // PNG for transparency
-  const image = (await readFile("./src/assets/og-background.png")).toString(
-    "base64"
-  );
+	// PNG for transparency
+	const image = (await readFile("./src/assets/og-background.png")).toString(
+		"base64",
+	);
 
-  const config = {
-    title: "Title",
-    description: "Description",
-  };
+	const config = {
+		title: "Title",
+		description: "Description",
+	};
 
-  const fontMono = await getFontDataTTF("--font-sans");
+	const fontMono = await getFontDataTTF("--font-sans");
 
-  const template = html`
+	const template = html`
     <div
       class="flex h-full w-full flex-col items-center bg-stone-200 justify-center"
     >
@@ -33,9 +34,9 @@ export const GET: APIRoute = async () => {
     </div>
   ` as React.ReactNode;
 
-  return satoriAstroOG({ template, width: 1200, height: 630 }).toResponse({
-    satori: {
-      fonts: [fontMono],
-    },
-  });
+	return satoriAstroOG({ template, width: 1200, height: 630 }).toResponse({
+		satori: {
+			fonts: [fontMono],
+		},
+	});
 };
